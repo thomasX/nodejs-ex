@@ -21,6 +21,22 @@ server.route({
         return'hello world';
     }
 });
+server.route({
+    method:'GET',
+    path:'/',
+    handler:function(request,h) {
+
+        return'hello from /';
+    }
+});
+server.route({
+    method:'GET',
+    path:'/pagecount',
+    handler:function(request,h) {
+
+        return'hello from pagecount';
+    }
+});
 
 // Start the server
 async function start() {
