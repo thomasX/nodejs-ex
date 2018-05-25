@@ -1,13 +1,13 @@
 //  OpenShift sample Node application
 'use strict';
 
-const Hapi=require('hapi');
+const hapi=require('hapi');
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     mongoURLLabel = "";
 // Create a server with a host and port
-const server=Hapi.server({
+const server=hapi.server({
     host:ip,
     port:port
 });
@@ -17,8 +17,8 @@ server.route({
     method:'GET',
     path:'/hello',
     handler:function(request,h) {
-
-        return'hello world';
+      const response = { data: 'hello from /hello', statusCode: 200 }
+      return response;
     }
 });
 server.route({
@@ -53,3 +53,4 @@ async function start() {
 };
 
 start();
+module.exports =  server;
